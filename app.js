@@ -6,6 +6,7 @@ const express = require("express");
 const app = express();
 const hbs = require('express-handlebars');
 
+app.use(express.static('public'))
 app.engine('handlebars', hbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
@@ -17,7 +18,7 @@ app.use(express.static("public"));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', { title: 'Cool, huh!', style: 'public/stylesheets/style.css', anyArray: [1,2,3] });
 });
 
 app.get('/about', (req, res) => {
